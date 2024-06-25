@@ -5,28 +5,28 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Asiganciones extends Model
+class Asignaciones extends Model
 {
     use HasFactory;
-    protected $table='asignaciones';
 
-    protected $fillable=[
-       'usuario_id',
-       'curso_id',
-       'fechaInicio',
-       'fechaFinalizacion',
-       'importe',
+    protected $table = "asignaciones";
+
+    protected $fillable = [
+        'user_id',
+        'curso_id',
+        'fechaInicio',
+        'fechaFin',
+        'importe',
+        'estado',
     ];
-    public function usuario()
+
+    public function user()
     {
-        return $this->belongsTo(User::class, 'usuario_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function curso()
     {
-        return $this->belongsTo(User::class, 'curso_id');
+        return $this->belongTo(Cursos::class, 'curso_id');
     }
-    public function tarea()
-    {
-        return $this->hasOne(Horario::class, 'asignacion_id');
-    }
+
 }

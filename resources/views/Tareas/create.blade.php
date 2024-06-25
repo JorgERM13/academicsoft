@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Usuarios</h1>
+                    <h1 class="m-0">Tareas</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                        <li class="breadcrumb-item active">Usuarios</li>
+                        <li class="breadcrumb-item active">Tareas</li>
                     </ol>
                 </div>
             </div>
@@ -25,45 +25,47 @@
                     <div class="card">
                         <div class="card-body">
                             @include('includes.alertas')
-                            <form action="{{ url('usuarios/registrar') }}" method="POST">
+                            <form action="{{ url('tareas/registrar') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="nombre">Nombre</label>
-                                    <input type="text" name="nombre" value="{{ old('nombre') }}" class="form-control">
-                                    @error('nombre')
+                                    <label for="descripcion">Descripción</label>
+                                    <input type="text" name="descripcion" value="{{ old('descripcion') }}"
+                                        class="form-control">
+                                    @error('descripcion')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fechaEntrega">Fecha de Entrega</label>
+                                    <input type="date" name="fechaEntrega" value="{{ old('fechaEntrega') }}"
+                                        class="form-control">
+                                    @error('fechaEntrega')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" name="email" value="" class="form-control">
-                                    @error('email')
+                                    <label for="nota">Nota</label>
+                                    <input type="text" name="nota" value="{{ old('nota') }}" class="form-control">
+                                    @error('nota')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label for="tipo">Tipo</label>
-                                    <select name="tipo" class="form-control">
-                                        <option value="1">Administrador</option>
-                                        <option value="2">Estudiante</option>
-                                    </select>
-                                    @error('tipo')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-                            </form>
+
+
                         </div>
 
+                        <div class="text-center mt-3 pb-2">
+                            <button type="submit" class="btn btn-dark">Registrar</button>
+                            <a href="{{ url('tareas') }}" class="btn btn-primary">Volver al listado</a>
+                        </div>
+                        </form>
+
                     </div>
-                    <div class="text-center mt-3 pb-2">
-                        <button type="submit" class="btn btn-dark">Registrar</button>
-                        <a href="{{ url('usuarios') }}" class="btn btn-primary">Volver al listado</a>
-                    </div>
-                    </form>
                 </div>
+
             </div>
         </div>
-    </div>
     </div>
     </div>
 @endsection

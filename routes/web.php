@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DatosController;
+use App\Http\Controllers\CursosController;
+use App\Http\Controllers\TareasController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\AsignacionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,15 +21,29 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::get('/datos',[DatosController::class,'index']);
-Route::post('/datos/registrar',[DatosController::class,'store']);
-Route::put('/datos/actualizar',[DatosController::class,'update']);
+Route::get('/usuarios', [App\Http\Controllers\UsuariosController::class, 'index']);
+Route::get('/usuarios/registrar', [App\Http\Controllers\UsuariosController::class, 'create']);
+Route::post('/usuarios/registrar', [App\Http\Controllers\UsuariosController::class, 'store']);
+Route::get('/usuarios/actualizar/{id}', [App\Http\Controllers\UsuariosController::class, 'edit']);
+Route::put('/usuarios/actualizar/{id}', [App\Http\Controllers\UsuariosController::class, 'update']);
 
+Route::get('/asignaciones', [AsignacionesController::class, 'index']);
+Route::get('/asignaciones/registrar', [AsignacionesController::class, 'create']);
+Route::post('/asignaciones/registrar', [AsignacionesController::class, 'store']);
 
-Route::get('/usuarios',[UsuariosController::class,'index']);
-Route::post('/usuarios/registrar',[UsuariosController::class,'store']);
-Route::put('/usuarios/actualizar',[UsuariosController::class,'update']);
+Route::get('/cursos', [App\Http\Controllers\CursosController::class, 'index']);
+Route::get('/cursos/registrar', [App\Http\Controllers\CursosController::class, 'create']);
+Route::post('/cursos/registrar', [CursosController::class, 'store']);
+Route::get('/cursos/actualizar/{id}', [App\Http\Controllers\CursosController::class, 'edit']);
+Route::put('/cursos/actualizar/{id}', [CursosController::class, 'update']);
+Route::get('/cursos/estado/{id}', [App\Http\Controllers\CursosController::class, 'estado']);
 
+Route::get('/tareas', [App\Http\Controllers\TareasController::class, 'index']);
+Route::get('/tareas/registrar', [App\Http\Controllers\TareasController::class, 'create']);
+Route::post('/tareas/registrar', [TareasController::class, 'store']);
+Route::get('/tareas/actualizar/{id}', [App\Http\Controllers\TareasController::class, 'edit']);
+Route::put('/tareas/actualizar/{id}', [TareasController::class, 'update']);
+Route::get('/tareas/eliminar/{id}', [TareasController::class, 'destroy']);
 
 
 

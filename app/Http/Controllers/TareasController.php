@@ -12,7 +12,8 @@ class TareasController extends Controller
      */
     public function index()
     {
-        //
+        $tareas= Tareas::with('asignacion')->orderBy('id', 'DESC')->paginate(10);
+        return view('tareas.index',compact('tareas'));
     }
 
     /**
@@ -20,7 +21,7 @@ class TareasController extends Controller
      */
     public function create()
     {
-        //
+        return view('tareas.create');
     }
 
     /**
@@ -28,13 +29,30 @@ class TareasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'descripcion'=> 'required',
+            'fechaEntrega'=> 'required',
+            'nota'=> 'required',
+            'asignacion_id'=> 'required|exists:asignaciones,id',
+        ]);
+
+        $tarea= new Tareas();
+        $tarea->descripcion=$request->descripcion;
+        $tarea->fechaEntrega=$request->fechaEntrega;
+        $tarea->nota=$request->nota;
+        $tarea->asignacion_id=$request->asignacion_id;
+
+        if($tarea->save()){
+            return redirect('/tareas')->with('success', 'Tarea creada exitosamente');
+        }else{
+            return back('/tareas')->with('error', 'Error al crear la tarea');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Tareas $tareas)
+    public function show($id)
     {
         //
     }
@@ -42,24 +60,44 @@ class TareasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tareas $tareas)
+    public function edit($id)
     {
-        //
+        $tarea= Tareas::find($id);
+        return view('tareas.edit',compact('tarea'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tareas $tareas)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'descripcion'=> 'required',
+            'fechaEntrega'=> 'required',
+            'nota'=> 'required',
+        ]);
+
+        $tarea=Tareas::find($id );
+        $tarea->descripcion=$request->descripcion;
+        $tarea->fechaEntrega=$request->fechaEntrega;
+        $tarea->nota=$request->nota;
+        if($tarea->save()){
+            return redirect('/tareas')->with('success', 'Tarea actualizada exitosamente');
+        }else{
+            return back('/tareas')->with('error', 'Error al actualizar la tarea');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tareas $tareas)
+    public function destroy($id)
     {
-        //
+        $tarea=Tareas::find($id);
+        if($tarea->delete()){
+            return redirect('/tareas')->with('success', 'Tarea eliminada exitosamente');
+        }else{
+            return back('/tareas')->with('error', 'Error al eliminar la tarea');
+        }
     }
 }

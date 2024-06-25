@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('datos', function (Blueprint $table) {
+        Schema::create('asignaciones', function (Blueprint $table) {
             $table->id();
-            $table->string('administrador')->default('AcademicSoft');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('curso_id')->constrained('cursos');
+            $table->date('fechaInicio');
+            $table->date('fechaFin');
+            $table->decimal('importe');
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }
@@ -23,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('datos');
+        Schema::dropIfExists('asignaciones');
     }
 };

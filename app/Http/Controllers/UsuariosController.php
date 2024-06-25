@@ -7,48 +7,55 @@ use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
 {
+
+
     public function index()
     {
-        $usuarios = User::orderBy('id','ASC')->paginate(10);
-        return view('usuarios.index', compact('usuarios'));
+        $usuarios=User::orderBy('id','desc')->paginate(10);
+        return view('usuarios.index',compact('usuarios'));
     }
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
 
-    //         'tipo'=>'nullable',
-    //     ]);
-
-    //     $user=new User();
-    //     $user->name=auth()->user()->name;
-    //     $user->email=auth()->user()->email;
-    //     $user->tipo='Estudiante';
-
-    //     if($user->save()){
-    //         return back()->with('success', 'Registro actualizado con éxito');
-    //     }else{
-    //         return back()->with('error', 'No se pudo actualizar el registro');
-    //     }
-
-    // }
-    public function update(Request $request)
+    public function create()
     {
-        $request->validate([
-            'name'=>'required',
-            'email'=>'required',
-            'tipo'=>'nullable',
+        return view('usuarios.create');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name'=> 'required',
+            'email'=> 'required',
+            'tipo'=> 'required',
         ]);
 
-        $user=User::find(auth()->user()->id);
-        $user->name= $request->name;
-        $user->email=$request->email;
-        $user->tipo='Estudiante';
-
-        if($user->save()){
-            return back()->with('success', 'Registro actualizado con éxito');
+        $usuario = new User();
+        $usuario->name=$request->name;
+        $usuario->email=$request->email;
+        $usuario->tipo=$request->tipo;
+        $usuario->password=bcrypt($request->password);
+        if($usuario->save()){
+            return redirect('/users')->with('success', 'Usuario creado exitosamente');
         }else{
-            return back()->with('error', 'No se pudo actualizar el registro');
+            return back('/users')->with('error', 'Error al crear el usuario');
         }
     }
+    public function edit($id)
+    {
+        $usuario = User::find($id);
+        return view('usuarios.edit', compact('user'));
+    }
 
+    public function update(Request $request, $id)
+    {
+        $usuario = usuario::find($id);
+        $usuario->name=$request->name;
+        $usuario->email=$request->email;
+        $usuario->tipo=$request->tipo;
+        if($usuario->save()){
+            return redirect('/users')->with('success', 'Usuario actualizado exitosamente');
+        }else{
+            return back('/users')->with('error', 'Error al actualizar el usuario');
+        }
+    }
 }
+

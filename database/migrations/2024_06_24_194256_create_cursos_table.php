@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('asignaciones', function (Blueprint $table) {
+        Schema::create('cursos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('usuario_id')->constrained('users');
-            $table->foreingId('curso_id')->constrained('cursos');
-            $table->date('fechaInicio');
-            $table->date('fechaFinalizacion');
-            $table->decimal('importe',5,2);
+            $table->string('nombre');
+            $table->string('descripcion');
+            $table->string('imagen')->default('default.png');
+            $table->decimal('costo',5,2)->default(0);
+            $table->boolean('estado')->default(true);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('asignaciones');
+        Schema::dropIfExists('cursos');
     }
 };

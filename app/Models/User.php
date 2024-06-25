@@ -23,10 +23,11 @@ class User extends Authenticatable
         'password',
         'tipo'
     ];
-    public function asignaciones()
-    {
-        return $this->hasMany(Asignaciones::class,'usuario_id');
-    }
+
+
+
+
+
 
 
     /**

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('asignacion_id')->constrained('asignaciones');
             $table->string('descripcion');
-            $table->date('entrega');
-            $table->decimal('nota');
+            $table->date('fechaEntrega');
+            $table->string('nota');
             $table->timestamps();
         });
     }

@@ -9,12 +9,25 @@ class Cursos extends Model
 {
     use HasFactory;
 
-    protected $table='cursos';
+    protected $table = 'cursos';
 
-    protected $fillable=[
-       'nombre',
-       'descripcion',
-       'imagen',
-       'costo',
+    protected$fillable = [
+        'nombre',
+        'descripcion',
+        'imagen',
+        'costo',
+        'estado'
     ];
+
+
+
+
+    //obtener la imagen
+    public function getImagenUrl(){
+        if($this->imagen && $this->imagen != 'default.png' && $this->imagen != null){
+            return asset('imagenes/cursos/' .$this->imagen);
+        }else{
+            return asset('default.png');
+        }
+    }
 }

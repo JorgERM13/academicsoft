@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Usuarios</h1>
+                    <h1 class="m-0">Tareas</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Inicio</a></li>
-                        <li class="breadcrumb-item active">Usuarios</li>
+                        <li class="breadcrumb-item active">Tareas</li>
                     </ol>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="col-md-6 text-end pb-2">
-                            <a href="{{ url('usuarios/registrar') }}" class="btn btn-primary">Nuevo usuario</a>
+                            <a href="{{ url('tareas/registrar') }}" class="btn btn-primary">Nueva tarea</a>
                         </div>
                     </div>
 
@@ -42,32 +42,43 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Email</th>
-                                    <th>Tipo</th>
+                                    <th>Asignación</th>
+                                    <th>Descripcion</th>
+                                    <th>Fecha de entrega</th>
+                                    <th>Nota</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($usuarios as $item)
+                                @foreach ($tareas as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->email }}</td>
-                                        <td>{{ $item->tipo }}</td>
+                                        <td>{{ $item->descripcion }}</td>
+                                        <td>{{ $item->fechaEntrega }}</td>
+                                        <td>{{ $item->nota }}</td>
                                         <td>
-                                            <a href="{{ url('usuarios/actualizar') }}" class="btn btn-primary btn-sm">
+                                            <a href="{{ url('tareas/actualizar/' . $item->id) }}"
+                                                class="btn btn-primary btn-sm">
                                                 <i class="fas fa-edit"></i>
+                                            </a>
+
+                                            <a href="{{ url('tareas/eliminar/' . $item->id) }}"
+                                                class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $usuarios->links('pagination::bootstrap-5') }}
+                        {{ $tareas->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
             </div>
+
+
+
+
         </div>
     </div>
 @endsection

@@ -23,10 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(auth()->user()->tipo==null){
-            return view('perfil.completar');
-        }else{
-            return view('home');
-        }
+        return view('home');
     }
 }

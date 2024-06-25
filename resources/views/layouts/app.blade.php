@@ -14,12 +14,14 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
 </head>
 
 <body class="sidebar-mini sidebar-fixed" style="height: auto;">
@@ -200,7 +202,7 @@
                             </ul>
                         </li> --}}
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{ url('usuarios') }}" class="nav-link">
                                     <i class="nav-icon fas fa-user"></i>
                                     <p>
                                         Usuarios
@@ -208,24 +210,24 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
+                                <a href="{{ url('asignaciones') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-list"></i>
                                     <p>
                                         Asignaciones
                                     </p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
+                                <a href="{{ url('cursos') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-graduation-cap"></i>
                                     <p>
                                         Cursos
                                     </p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
+                                <a href="{{ url('tareas') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-pen"></i>
                                     <p>
                                         Tareas
                                     </p>

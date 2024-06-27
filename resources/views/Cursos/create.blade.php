@@ -54,20 +54,17 @@
                                 <div class="form-group">
                                     <label for="descripcion">Descripcion</label>
                                     <textarea class="form-control" name="descripcion" cols="30" rows="2">{{ old('descripcion') }}</textarea>
+                                    @error('descripcion')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
-                                @error('descripcion')
-                                    <small class="text-danger">{{ $message }}</small>
-                                @enderror
-
                                 <div class="text-center mt-3">
                                     <button type="submit" class="btn btn-dark">Registrar</button>
                                     <a href="{{ url('cursos') }}" class="btn btn-primary">Volver al listado</a>
                                 </div>
                             </form>
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

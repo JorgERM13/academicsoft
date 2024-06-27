@@ -25,19 +25,19 @@
                     <div class="card">
                         <div class="card-body">
                             @include('includes.alertas')
-                            <form action="{{ url('usuarios/actualizar/' . $user->id) }}" method="POST">
+                            <form action="{{ url('usuarios/actualizar/' . $usuario->id) }}" method="POST">
                                 @method('PUT')
                                 @csrf
                                 <div class="form-group">
                                     <label for="nombre">Nombre</label>
-                                    <input type="text" name="nombre" value="{{ $user->name }}" class="form-control">
+                                    <input type="text" name="nombre" value="{{ $usuario->name }}" class="form-control">
                                     @error('nombre')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" value="{{ $user->email }}" class="form-control">
+                                    <input type="email" name="email" value="{{ $usuario->email }}" class="form-control">
                                     @error('email')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
@@ -50,12 +50,12 @@
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
+                                <div class="text-center mt-3 pb-2">
+                                    <button type="submit" class="btn btn-dark">Actualizar</button>
+                                    <a href="{{ url('usuarios') }}" class="btn btn-primary">Volver al listado</a>
+                                </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="text-center mt-3 pb-2">
-                        <button type="submit" class="btn btn-dark">Actualizar</button>
-                        <a href="{{ url('usuarios') }}" class="btn btn-primary">Volver al listado</a>
                     </div>
                     </form>
                 </div>

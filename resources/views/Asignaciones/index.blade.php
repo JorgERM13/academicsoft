@@ -18,7 +18,7 @@
     </div>
 
 
-    <div class="content">
+    <div class="container">
         <div class="container-fluid">
 
             <div class="card">
@@ -48,6 +48,7 @@
                                     <th>Fecha de inicio</th>
                                     <th>Fecha de finalización</th>
                                     <th>Importe</th>
+                                    <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -60,34 +61,35 @@
                                         <td>{{ $item->curso->nombre }}</td>
                                         <td>{{ $item->fechaInicio }}</td>
                                         <td>{{ $item->fechaFin }}</td>
-                                        <td>{{ $item->importe }}</td>
+                                        <td>{{ $item->importe }} USD</td>
+                                        <td>
+                                            @if ($item->estado == true)
+                                                <span class="badge bg-success">Activo</span>
+                                            @else
+                                                <span class="badge bg-danger">Inactivo</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ url('asignaciones/actualizar/' . $item->id) }}"
+                                                class="btn btn-primary btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            @if ($item->estado == true)
+                                                <a href="{{ url('asignaciones/estado/' . $item->id) }}"
+                                                    class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-ban"></i>
+                                                </a>
+                                            @else
+                                                <a href="{{ url('asignaciones/estado/' . $item->id) }}"
+                                                    class="btn btn-primary btn-sm">
+                                                    <i class="fas fa-check"></i>
+                                                </a>
+                                            @endif
+                                        </td>
                                 @endforeach
-                                <td>
-                                    @if ($item->estado == true)
-                                        <span class="badge bg-success">Activo</span>
-                                    @else
-                                        <span class="badge bg-danger">Inactivo</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{ url('asignaciones/actualizar/') }}" class="btn btn-primary btn-sm">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    @if ($item->estado == true)
-                                        <a href="{{ url('asignaciones/estado/') }}" class="btn btn-danger btn-sm">
-                                            <i class="fas fa-ban"></i>
-                                        </a>
-                                    @else
-                                        <a href="{{ url('asignaciones/estado/') }}" class="btn btn-primary btn-sm">
-                                            <i class="fas fa-check"></i>
-                                        </a>
-                                    @endif
-                                </td>
                                 </tr>
-
                             </tbody>
                         </table>
-                        {{ $asignaciones->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
             </div>

@@ -56,7 +56,8 @@
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->tipo }}</td>
                                         <td>
-                                            <a href="{{ url('usuarios/actualizar') }}" class="btn btn-primary btn-sm">
+                                            <a href="{{ url('usuarios/actualizar/' . $item->id) }}"
+                                                class="btn btn-dark btn-sm">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                         </td>

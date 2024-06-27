@@ -23,7 +23,9 @@
             <div class="col-md-6">
                 <div class="card-body">
 
-                    <form action=" {{ url('/asignaciones/registrar') }}" method="POST">
+                    <form action=" {{ url('/asignaciones/actualizar/' . $asignacion->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                         <div class="form-group">
                             <label for="usuario_id">Usuario</label>
@@ -77,7 +79,7 @@
 
                         <div class="text-center">
                             <a href="{{ url('/asignaciones') }}" class="btn btn-primary">Volver al listado</a>
-                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <button type="submit" class="btn btn-success">Actualizar</button>
                         </div>
                     </form>
                 </div>

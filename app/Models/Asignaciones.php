@@ -12,7 +12,7 @@ class Asignaciones extends Model
     protected $table = "asignaciones";
 
     protected $fillable = [
-        'user_id',
+        'usuario_id',
         'curso_id',
         'fechaInicio',
         'fechaFin',
@@ -22,7 +22,7 @@ class Asignaciones extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'usuario_id');
     }
     public function curso()
     {

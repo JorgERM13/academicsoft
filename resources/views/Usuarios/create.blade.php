@@ -25,41 +25,52 @@
                     <div class="card">
                         <div class="card-body">
                             @include('includes.alertas')
-                            <form action="{{ url('usuarios/registrar') }}" method="POST">
+
+                            <form action="{{ url('usuarios/registrar') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="nombre">Nombre</label>
-                                    <input type="text" name="nombre" value="{{ old('nombre') }}" class="form-control">
-                                    @error('nombre')
+                                    <label for="name">Nombre</label>
+                                    <input type="text" name="name" value="{{ old('name') }}" class="form-control">
+                                    @error('name')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" value="" class="form-control">
+                                    <input type="email" name="email" value="{{ old('email') }}" class="form-control">
                                     @error('email')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label for="password">Contraseña</label>
+                                    <input type="password" name="password" value="{{ old('password') }}"
+                                        class="form-control">
+                                    @error('password')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="password-confirmation">Confirmar Contraseña</label>
+                                    <input type="password" name="password-confirmation" class="form-control">
+                                </div>
+                                <div class="form-group">
                                     <label for="tipo">Tipo</label>
                                     <select name="tipo" class="form-control">
-                                        <option value="1">Administrador</option>
-                                        <option value="2">Estudiante</option>
+                                        <option value="administrador">Administrador</option>
+                                        <option value="estudiante">Estudiante</option>
                                     </select>
                                     @error('tipo')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
+                                <div class="text-center mt-3 pb-2">
+                                    <button type="submit" class="btn btn-dark">Registrar</button>
+                                    <a href="{{ url('usuarios') }}" class="btn btn-primary">Volver al listado</a>
+                                </div>
                             </form>
                         </div>
-
                     </div>
-                    <div class="text-center mt-3 pb-2">
-                        <button type="submit" class="btn btn-dark">Registrar</button>
-                        <a href="{{ url('usuarios') }}" class="btn btn-primary">Volver al listado</a>
-                    </div>
-                    </form>
                 </div>
             </div>
         </div>

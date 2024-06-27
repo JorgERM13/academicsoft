@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Cursos;
 use App\Models\Asignaciones;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,7 @@ class AsignacionesController extends Controller
      */
     public function index()
     {
-        $asignaciones = Asignaciones::orderBy('id', 'DESC')->paginate(10);
+        $asignaciones = Asignaciones::with('usuario', 'curso')->orderBy('id', 'DESC')->paginate(10);
         return view('asignaciones.index', compact('asignaciones'));
     }
 
@@ -21,7 +23,10 @@ class AsignacionesController extends Controller
      */
     public function create()
     {
-        return view('asignaciones.create');
+
+        $usuarios=User::all();
+        $cursos = Cursos::where('estado',true)->get();
+        return view('asignaciones.create', compact('cursos','usuarios'));
     }
 
     /**
@@ -30,26 +35,27 @@ class AsignacionesController extends Controller
     public function store(Request $request)
 
     {
-        $request->validate ([
-            'user_id' => 'required|exists:users,id',
+        $this->validate($request,[
+            'usuario_id' => 'required|exists:users,id',
             'curso_id' => 'required|exists:cursos,id',
             'fechaInicio' => 'required',
             'fechaFin' => 'required',
             'importe' => 'required',
-
+            'estado' => 'nullable',
         ]);
 
         $asignacion = new Asignaciones();
-        $asignacion->user_id = auth()->user()->id;
+
+        $asignacion->usuario_id =$request->usuario_id;
         $asignacion->curso_id = $request->curso_id;
         $asignacion->fechaInicio = $request->fechaInicio;
         $asignacion->fechaFin = $request->fechaFin;
         $asignacion->importe = $request->importe;
-        $asigancion->estado = true;
+        $asignacion->estado = true;
         if ($asignacion->save()) {
             return redirect('/asignaciones')->with('success', 'Asignacion creada exitosamente');
         } else {
-            return back('/asignaciones')->with('error', 'Error al crear la asignacion');
+            return back()->with('error', 'Error al crear la asignacion');
         }
     }
 
@@ -67,7 +73,9 @@ class AsignacionesController extends Controller
     public function edit($id)
     {
         $asignacion = Asignaciones::find($id);
-        return view('asignaciones.edit', compact('asignacion'));
+        $usuarios=User::all();
+        $cursos=Cursos::where('estado',true)->get();
+        return view('asignaciones.edit', compact('asignacion','usuarios','cursos'));
     }
 
     /**
@@ -76,14 +84,15 @@ class AsignacionesController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate ([
-            'user_id' => 'required|exists:users,id',
+            'usuario_id' => 'required|exists:users,id',
             'curso_id' => 'required|exists:cursos,id',
             'fechaInicio' => 'required',
             'fechaFin' => 'required',
             'importe' => 'required',
+            'estado' => 'nullable',
         ]);
         $asignacion =Asignaciones::find($id)();
-        $asignacion->user_id = auth()->user()->id;
+        $asignacion->usuario_id = $request->usuario_id;
         $asignacion->curso_id = $request->curso_id;
         $asignacion->fechaInicio = $request->fechaInicio;
         $asignacion->fechaFin = $request->fechaFin;

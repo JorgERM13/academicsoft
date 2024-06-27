@@ -19,24 +19,31 @@
 
 
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card-body">
 
                     <form action=" {{ url('/asignaciones/registrar') }}" method="POST">
                         @csrf
-                        <div class="form-group">
-                            <label for="usuario_id">Usuario</label>
-                            <select name="usuario_id" id="usuario_id" class="form-control">
-                                <option value="">Seleccione...</option>
-                                @foreach ($usuarios as $usuario)
-                                    <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('usuario_id')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
+
+                        @if (auth()->user()->tipo('administrador'))
+                            <div class="form-group">
+                                <label for="usuario_id">Usuario</label>
+                                <select name="usuario_id" id="usuario_id" class="form-control">
+                                    <option value="">Seleccione...</option>
+                                    @foreach ($usuarios as $usuar)
+                                        <option value="{{ $usuar->id }}">{{ $usuar->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('usuario_id')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        @else
+                            <input type="hidden" name="usuario_id" value="{{ auth()->user()->id }}">
+                        @endif
+
+
 
                         <div class="form-group">
                             <label for="curso_id">Cursos</label>
@@ -77,7 +84,7 @@
 
                         <div class="text-center">
                             <a href="{{ url('/asignaciones') }}" class="btn btn-primary">Volver al listado</a>
-                            <button type="submit" class="btn btn-success">Registrar</button>
+                            <button type="submit" class="btn btn-dark">Registrar</button>
                         </div>
                     </form>
                 </div>

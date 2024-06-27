@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Cursos;
+use App\Models\Asignaciones;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Asignaciones extends Model
 {
@@ -26,7 +29,7 @@ class Asignaciones extends Model
     }
     public function curso()
     {
-        return $this->belongTo(Cursos::class, 'curso_id');
+        return $this->belongsTo(Cursos::class, 'curso_id');
     }
 
 }

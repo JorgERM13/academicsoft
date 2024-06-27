@@ -14,7 +14,7 @@ class AsignacionesController extends Controller
      */
     public function index()
     {
-        $asignaciones = Asignaciones::with('usuario', 'curso')->orderBy('id', 'DESC')->paginate(10);
+        $asignaciones = Asignaciones::all();
         return view('asignaciones.index', compact('asignaciones'));
     }
 
@@ -91,7 +91,7 @@ class AsignacionesController extends Controller
             'importe' => 'required',
             'estado' => 'nullable',
         ]);
-        $asignacion =Asignaciones::find($id)();
+        $asignacion=Asignaciones::find($id);
         $asignacion->usuario_id = $request->usuario_id;
         $asignacion->curso_id = $request->curso_id;
         $asignacion->fechaInicio = $request->fechaInicio;

@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="col-md-6 text-end pb-2">
-                            <a href="{{ url('asignaciones/registrar') }}" class="btn btn-primary">Nueva asignacion</a>
+                            <a href="{{ url('asignaciones/registrar') }}" class="btn btn-primary">Nueva asignación</a>
                         </div>
                     </div>
 

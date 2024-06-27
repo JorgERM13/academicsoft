@@ -31,18 +31,16 @@
                                 @csrf
 
                                 <div class="form-group">
-                                    <label for="asignacion_id">Asignaciones</label>
+                                    <label for="asignacion_id">Asignación_ID</label>
                                     <select name="asignacion_id" id="asignacion_id" class="form-control">
-                                        <option value="">-- Seleccione --</option>
+                                        <option value="asignacion_id">-- Seleccione --</option>
                                         @foreach ($asignaciones as $asig)
-                                            <option value="{{ $asig->id }}">{{ $asig->nombre }}</option>
+                                            <option value="{{ $asig->id }}"></option>
                                         @endforeach
                                     </select>
                                     @error('asignacion_id')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
-
-
                                     <div class="form-group">
                                         <label for="descripcion">Descripción</label>
                                         <textarea name="descripcion" id="" cols="30" rows="10" class="form-control">{{ old('descripcion') }}</textarea>

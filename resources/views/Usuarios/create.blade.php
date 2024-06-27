@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Usuarios</h1>
+                    <h1 class="m-0">Crear Usuarios</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -58,7 +58,7 @@
                                     <label for="tipo">Tipo</label>
                                     <select name="tipo" class="form-control">
                                         <option value="administrador">Administrador</option>
-                                        <option value="estudiante">Estudiante</option>
+                                        <option value="alumno">Alumno</option>
                                     </select>
                                     @error('tipo')
                                         <small class="text-danger">{{ $message }}</small>

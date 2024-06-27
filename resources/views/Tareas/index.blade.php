@@ -41,9 +41,8 @@
                         <table class="table table-bordered table-sm">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Asignación</th>
-                                    <th>Descripcion</th>
+                                    <th>Asignación_ID</th>
+                                    <th>Descripción</th>
                                     <th>Fecha de entrega</th>
                                     <th>Nota</th>
                                     <th>Acciones</th>

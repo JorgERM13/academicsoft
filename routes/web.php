@@ -30,6 +30,10 @@ Route::put('/usuarios/actualizar/{id}', [App\Http\Controllers\UsuariosController
 Route::get('/asignaciones', [AsignacionesController::class, 'index']);
 Route::get('/asignaciones/registrar', [AsignacionesController::class, 'create']);
 Route::post('/asignaciones/registrar', [AsignacionesController::class, 'store']);
+Route::get('/asignaciones/actualizar/{id}', [AsignacionesController::class, 'edit']);
+Route::put('/asignaciones/actualizar/{id}', [AsignacionesController::class, 'update']);
+Route::get('/asignaciones/estado/{id}', [AsignacionesController::class, 'estado']);
+
 
 Route::get('/cursos', [App\Http\Controllers\CursosController::class, 'index']);
 Route::get('/cursos/registrar', [App\Http\Controllers\CursosController::class, 'create']);

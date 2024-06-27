@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Usuarios</h1>
+                    <h1 class="m-0">Editar Usuarios</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -44,7 +44,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="tipo">Tipo</label>
-                                    <select name="tipo" class="form-control">
+                                    <select name="tipo" class="form-control" value="{{ $usuario->tipo }}">
+                                        <option value="administrador"
+                                            {{ $usuario->tipo == 'administrador' ? 'selected' : '' }}>Administrador</option>
+                                        <option value="alumno" {{ $usuario->tipo == 'alumno' ? 'selected' : '' }}>Alumno
+                                        </option>
                                     </select>
                                     @error('tipo')
                                         <small class="text-danger">{{ $message }}</small>

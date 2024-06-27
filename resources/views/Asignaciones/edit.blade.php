@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Crear Asignaciones</h1>
+                    <h1 class="m-0">Editar Asignaciones</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -31,8 +31,8 @@
                             <label for="usuario_id">Usuario</label>
                             <select name="usuario_id" id="usuario_id" class="form-control">
                                 <option value="">Seleccione...</option>
-                                @foreach ($usuarios as $usuario)
-                                    <option value="{{ $usuario->id }}">{{ $usuario->name }}</option>
+                                @foreach ($usuarios as $usuar)
+                                    <option value="{{ $usuar->id }}">{{ $usuar->name }}</option>
                                 @endforeach
                             </select>
                             @error('usuario_id')
@@ -79,7 +79,7 @@
 
                         <div class="text-center">
                             <a href="{{ url('/asignaciones') }}" class="btn btn-primary">Volver al listado</a>
-                            <button type="submit" class="btn btn-success">Actualizar</button>
+                            <button type="submit" class="btn btn-dark">Actualizar</button>
                         </div>
                     </form>
                 </div>

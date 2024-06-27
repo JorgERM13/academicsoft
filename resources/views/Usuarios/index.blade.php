@@ -57,7 +57,7 @@
                                         <td>{{ $item->tipo }}</td>
                                         <td>
                                             <a href="{{ url('usuarios/actualizar/' . $item->id) }}"
-                                                class="btn btn-dark btn-sm">
+                                                class="btn btn-primary btn-sm">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                         </td>
